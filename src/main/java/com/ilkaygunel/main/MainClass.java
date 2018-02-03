@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Testing extends Application {
+public class MainClass extends Application {
 
 	Label enterTextToHash;
 	Label calculatedHash;
@@ -32,7 +32,7 @@ public class Testing extends Application {
 		enterTextToHash.setId("enterTextToHash");
 
 		GridPane grid = new GridPane();
-		grid.setAlignment(Pos.CENTER);
+		grid.setAlignment(Pos.BASELINE_LEFT);
 
 		grid.setHgap(10);
 		grid.setVgap(10);
@@ -45,7 +45,7 @@ public class Testing extends Application {
 		addComboBox(grid);
 		addButton(grid);
 
-		Scene scene = new Scene(grid, 500, 500);
+		Scene scene = new Scene(grid, 750, 750);
 		stage.setScene(scene);
 
 		stage.show();
@@ -66,6 +66,7 @@ public class Testing extends Application {
 	public void addComboBox(GridPane grid) {
 		ObservableList<String> options = FXCollections.observableArrayList("MD5", "SHA256", "SHA512");
 		final ComboBox<String> comboBox = new ComboBox<String>(options);
+		comboBox.getSelectionModel().selectFirst();
 		comboBox.setId("hashCombobox");
 		grid.add(comboBox, 1, 1);
 	}
@@ -74,6 +75,7 @@ public class Testing extends Application {
 
 		calculatedHash = new Label();
 		calculatedHash.setWrapText(true);
+		calculatedHash.setPrefWidth(250);
 		Button hashCalculateButton = new Button("Calculate The Hash");
 		hashCalculateButton.setAlignment(Pos.CENTER);
 		hashCalculateButton.setOnAction(new EventHandler<ActionEvent>() {
